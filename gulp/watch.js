@@ -2,7 +2,7 @@
 
 import path from 'path';
 
-export default function(gulp, plugins, args, config, taskTarget, browserSync) {
+export default function (gulp, plugins, args, config, taskTarget, browserSync) {
   let dirs = config.directories;
   let dest = path.join(taskTarget);
 
@@ -25,14 +25,25 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         path.join(dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
       ], ['imagemin', 'copyimagestoserver', 'copyimagestobuild']);
 
+      // Theme
+      gulp.watch([
+        path.join(dirs.source, dirs.theme, '**/*.*')
+      ], ['copyTheme']);
+
       // JS
-      gulp.watch(path.join(dest, config.directories.assets, dirs.js.replace(/^_/, ''), '*.js'),['copyJsToServer', 'copyJsToBuild']);
+      gulp.watch([
+        path.join(dest, config.directories.assets, dirs.js.replace(/^_/, ''), '*.js'),
+      ], ['copyJsToServer', 'copyJsToBuild']);
 
       // CSS
-      gulp.watch(path.join(dest, config.directories.assets, dirs.css.replace(/^_/, ''), '*.css'),['copyCssToServer', 'copyCssToBuild']);
+      gulp.watch([
+        path.join(dest, config.directories.assets, dirs.css.replace(/^_/, ''), '*.css'),
+      ], ['copyCssToServer', 'copyCssToBuild']);
 
       // Fonts
-      gulp.watch(path.join(dest, config.directories.assets, dirs.fonts.replace(/^_/, ''), '*.*'),['copyFontsToServer', 'copyFontsToBuild']);
+      gulp.watch([
+        path.join(dest, config.directories.assets, dirs.fonts.replace(/^_/, ''), '*.*'),
+      ], ['copyFontsToServer', 'copyFontsToBuild']);
 
 
 

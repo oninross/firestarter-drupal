@@ -2,14 +2,7 @@
   "name": "firestarter",
   "version": "1.7.3",
   "dependencies": {
-    "browserify-shim": "^3.8.12",
-    "dot": "^1.1.2",
-    "gsap": "^1.19.1",
-    "gulp-sftp": "^0.1.5",
-    "jquery": "^3.3.1",
-    "jquery-lazyload": "^1.9.7",
-    "normalize.css": "~5.0.0",
-    "scrollmonitor": "^1.2.3"
+    "gulp-sftp": "^0.1.5"
   },
   "devDependencies": {
     "autoprefixer": "~6.7.5",
@@ -57,24 +50,7 @@
   "scripts": {
     "clean-deps": "rimraf node_modules"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
   "browser": {
-    "jquery": "./node_modules/jquery/dist/jquery.js",
-    "doT": "./node_modules/doT/doT.js",
-    "lazyload": "./node_modules/jquery-lazyload/jquery.lazyload.js",
-    "TweenLite": "./node_modules/gsap/src/uncompressed/TweenLite.js",
-    "EasePack": "./node_modules/gsap/src/uncompressed/easing/EasePack.js",
-    "AttrPlugin": "./node_modules/gsap/src/uncompressed/plugins/AttrPlugin.js",
-    "CSSPlugin": "./node_modules/gsap/src/uncompressed/plugins/CSSPlugin.js",
-    "scrollMonitor": "./node_modules/scrollmonitor/scrollmonitor.js"
-  },
-  "browserify-shim": {
-    "jquery": "jQuery",
-    "doT": "doT"
   },
   "engines": {
     "node": ">=0.12.0"
@@ -97,11 +73,13 @@
       "css": "_css",
       "fonts": "_fonts",
       "js": "_js",
+      "theme": "_theme",
       "data": "_data"
     },
     "drupal": {
       "path": {
         "local": {
+          "theme": "../docroot/themes/custom/firestarter",
           "css": "../docroot/themes/custom/firestarter/css",
           "js": "../docroot/themes/custom/firestarter/js",
           "images": "../docroot/themes/custom/firestarter/images",

@@ -9,6 +9,14 @@ export default function (gulp, plugins, args, config, taskTarget, browserSync) {
     let dest = path.join(taskTarget);
 
     /**
+     *  Copy Theme
+     */
+    gulp.task('copyTheme', () => {
+        return gulp.src(path.join(dirs.source, dirs.theme, '**/*'))
+            .pipe(gulp.dest(config.drupal.path.local.theme));
+    });
+
+    /**
      *  Copy Fonts
      */
     gulp.task('copyFonts', () => {

@@ -5,13 +5,6 @@
 
 window.$ = jQuery;
 
-import 'lazyload';
-import 'TweenLite';
-import 'EasePack';
-import 'AttrPlugin';
-import 'CSSPlugin';
-// import 'doT';
-
 $(() => {
 
     // JavaScript hack for opening links into new windows if target="_blank" is not set
