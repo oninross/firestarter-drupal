@@ -114,7 +114,8 @@
           "fonts": "/data/webs/sync-test/docroot/themes/custom/firestarter/fonts"
         }
       },
-      "copyToServer": true
+      "copyToServer": false,
+      "copyToBuild": true
     },
     "entries": {
       "js": "main**.js",

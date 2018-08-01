@@ -13,12 +13,7 @@ export default function (gulp, plugins, args, config, taskTarget, browserSync) {
      */
     gulp.task('copyFonts', () => {
         return gulp.src(path.join(dirs.source, dirs.fonts, '**/*.*'))
-            .pipe(sftp({
-                host: credentials.host,
-                user: credentials.user,
-                pass: credentials.pass,
-                remotePath: config.drupal.path.remote.css
-            }));
+            .pipe(gulp.dest(dest))
     });
 
 
@@ -80,28 +75,28 @@ export default function (gulp, plugins, args, config, taskTarget, browserSync) {
      * Copy assets to local build
      */
     gulp.task('copyCssToBuild', () => {
-        if (config.drupal.copyToServer) {
+        if (config.drupal.copyToBuild) {
             return gulp.src(path.join(dest, config.directories.assets, dirs.css.replace(/^_/, ''), '**/*'))
                 .pipe(gulp.dest(config.drupal.path.local.css));
         }
     });
 
     gulp.task('copyJsToBuild', () => {
-        if (config.drupal.copyToServer) {
+        if (config.drupal.copyToBuild) {
             return gulp.src(path.join(dest, config.directories.assets, dirs.js.replace(/^_/, ''), '**/*'))
                 .pipe(gulp.dest(config.drupal.path.local.js));
         }
     });
 
     gulp.task('copyFontsToBuild', () => {
-        if (config.drupal.copyToServer) {
+        if (config.drupal.copyToBuild) {
             return gulp.src(path.join(dest, config.directories.assets, dirs.fonts.replace(/^_/, ''), '**/*'))
                 .pipe(gulp.dest(config.drupal.path.local.fonts));
         }
     });
 
     gulp.task('copyImagesToBuild', () => {
-        if (config.drupal.copyToServer) {
+        if (config.drupal.copyToBuild) {
             return gulp.src(path.join(dest, config.directories.assets, dirs.images.replace(/^_/, ''), '**/*'))
                 .pipe(gulp.dest(config.drupal.path.local.images));
         }

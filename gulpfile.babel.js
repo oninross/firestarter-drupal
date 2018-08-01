@@ -52,6 +52,10 @@ gulp.task('build', [
   'copyImagesToBuild',
   'copyFontsToBuild',
   'copyJsToBuild',
+  'copyCssToServer',
+  'copyImagesToServer',
+  'copyFontsToServer',
+  'copyJsToServer'
 ]);
 
 // Server tasks with watch
@@ -65,6 +69,10 @@ gulp.task('serve', [
   'copyFontsToBuild',
   'copyImagesToBuild',
   'copyJsToBuild',
+  'copyCssToServer',
+  'copyImagesToServer',
+  'copyFontsToServer',
+  'copyJsToServer',
   'watch'
 ]);
 
