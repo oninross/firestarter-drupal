@@ -44,23 +44,27 @@ gulp.task('default', ['clean'], () => {
 
 // Build production-ready code
 gulp.task('build', [
-  'copy',
   'copyFonts',
   'imagemin',
-  'jade',
   'sass',
-  'browserify'
+  'browserify',
+  'copyCssToBuild',
+  'copyImagesToBuild',
+  'copyFontsToBuild',
+  'copyJsToBuild',
 ]);
 
 // Server tasks with watch
 gulp.task('serve', [
-  'imagemin',
-  'copy',
   'copyFonts',
-  'jade',
+  'imagemin',
   'sass',
   'browserify',
   'browserSync',
+  'copyCssToBuild',
+  'copyFontsToBuild',
+  'copyImagesToBuild',
+  'copyJsToBuild',
   'watch'
 ]);
 

@@ -5,6 +5,7 @@
     "browserify-shim": "^3.8.12",
     "dot": "^1.1.2",
     "gsap": "^1.19.1",
+    "gulp-sftp": "^0.1.5",
     "jquery": "^3.3.1",
     "jquery-lazyload": "^1.9.7",
     "normalize.css": "~5.0.0",
@@ -97,6 +98,23 @@
       "fonts": "_fonts",
       "js": "_js",
       "data": "_data"
+    },
+    "drupal": {
+      "path": {
+        "local": {
+          "css": "../docroot/themes/custom/firestarter/css",
+          "js": "../docroot/themes/custom/firestarter/js",
+          "images": "../docroot/themes/custom/firestarter/images",
+          "fonts": "../docroot/themes/custom/firestarter/fonts"
+        },
+        "remote": {
+          "css": "/data/webs/sync-test/docroot/themes/custom/firestarter/css",
+          "js": "/data/webs/sync-test/docroot/themes/custom/firestarter/js",
+          "images": "/data/webs/sync-test/docroot/themes/custom/firestarter/images",
+          "fonts": "/data/webs/sync-test/docroot/themes/custom/firestarter/fonts"
+        }
+      },
+      "copyToServer": true
     },
     "entries": {
       "js": "main**.js",
