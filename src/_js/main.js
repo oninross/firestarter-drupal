@@ -3,9 +3,13 @@
 
 'use strict';
 
+import TablePreview from "../_modules/table-preview/table-preview";
+
 window.$ = jQuery;
 
 $(() => {
+    new TablePreview();
+
 
     // JavaScript hack for opening links into new windows if target="_blank" is not set
     let a = new RegExp('/' + window.location.host + '/');

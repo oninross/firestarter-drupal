@@ -1,0 +1,39 @@
+.layout-container {
+    @extend .container;
+
+    main {
+        @include clearfix;
+
+        @extend .wrap;
+    }
+}
+
+.layout-content {
+    @extend .col-9;
+
+    @extend [class^="col-"];
+
+    .node__meta {
+        font-size: em(12);
+        font-style: italic;
+    }
+
+    .node__content {
+        font-size: em(16);
+    }
+}
+
+.layout-sidebar-first {
+    @extend .col-3;
+
+    @extend [class^="col-"];
+}
+
+.block ul.tabs,
+.ui-dialog {
+    font-size: em(14);
+}
+
+.block ul.tabs {
+    border-bottom: 1px solid #eee;
+}

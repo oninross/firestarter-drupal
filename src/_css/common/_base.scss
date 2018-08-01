@@ -1,0 +1,111 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    font: 62.5%/1.375 sans-serif;
+    font-family:
+/* 1 */ -apple-system, BlinkMacSystemFont,
+/* 2 */ "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+/* 3 */ "Helvetica Neue", sans-serif;
+    margin: 0 !important;
+
+    @include tablet {
+        font-family: 'HelveticaNeue';
+    }
+}
+
+// h1, h2, h3, h4, h5, h6,
+// address {
+//     word-break: break-word;
+//     line-height: 1;
+// }
+
+// h1 {
+//     font-size: 4.8em;
+//     line-height: 1.05em;
+// }
+
+// h2 {
+//     font-size: 3.6em;
+//     line-height: 1.25;
+// }
+
+// h3 {
+//     font-size: 2.8em;
+//     line-height: 1.25em;
+// }
+
+// h4 {
+//     font-size: 1.8em;
+//     line-height: 1.222222em;
+
+// }
+
+// h5 {
+//     font-size: 1.7em;
+//     font-style: italic;
+// }
+
+// h6 {
+//     font-size: 1.6em;
+//     font-style: italic;
+// }
+
+// blockquote {
+//     font-size: 2.4em;
+//     line-height: 1.458333em;
+// }
+
+// menu, ol, ul {
+//     margin-bottom: 20px;
+//     padding: 0 0 0 40px;
+// }
+
+// ol, ul {
+//     margin: auto;
+// }
+
+// dl, p {
+//     font-size: $defaultFontSize;
+// }
+
+table {
+    background-color: transparent;
+    border: 1px solid $grey;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+    width: 100%;
+
+    tr {
+        background-color: #efefef;
+    }
+
+    tr:nth-child(even) {
+        background-color: darken( #efefef, 5%);
+    }
+
+    th, td {
+        border: 1px solid #fff;
+        padding: 5px 10px;
+        vertical-align: top;
+    }
+
+    th {
+        background: #757575;
+        font-size: em(18);
+        color: $white;
+        text-align: left;
+
+        .node__content & {
+            font-size: em(18, 14);
+        }
+    }
+}
