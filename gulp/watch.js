@@ -4,6 +4,7 @@ import path from 'path';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
   let dirs = config.directories;
+  let dest = path.join(taskTarget);
 
   // Watch task
   gulp.task('watch', () => {
@@ -19,24 +20,21 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         path.join(dirs.source, dirs.fonts, '**/*.{ttf,woff,eof,svg}'),
       ], ['sass']);
 
-      // Jade Templates
-      gulp.watch([
-        path.join(dirs.source, '**/*.jade'),
-        path.join(dirs.source, dirs.data, '**/*.{json,yaml,yml}')
-      ], ['jade']);
-
-      // Copy
-      gulp.watch([
-        path.join(dirs.source, '**/*'),
-        path.join(dirs.source, dirs.fonts, '**/*.{ttf,woff,eof,svg}'),
-        '!' + path.join(dirs.source, '{**/\_*,**/\_*/**}'),
-        '!' + path.join(dirs.source, '**/*.jade')
-      ], ['copy']);
-
       // Images
       gulp.watch([
         path.join(dirs.source, dirs.images, '**/*.{jpg,jpeg,gif,svg,png}')
-      ], ['imagemin']);
+      ], ['imagemin', 'copyimagestoserver', 'copyimagestobuild']);
+
+      // JS
+      gulp.watch(path.join(dest, config.directories.assets, dirs.js.replace(/^_/, ''), '*.js'),['copyJsToServer', 'copyJsToBuild']);
+
+      // CSS
+      gulp.watch(path.join(dest, config.directories.assets, dirs.css.replace(/^_/, ''), '*.css'),['copyCssToServer', 'copyCssToBuild']);
+
+      // Fonts
+      gulp.watch(path.join(dest, config.directories.assets, dirs.fonts.replace(/^_/, ''), '*.*'),['copyFontsToServer', 'copyFontsToBuild']);
+
+
 
       // All other files
       gulp.watch([
