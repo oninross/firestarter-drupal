@@ -17,10 +17,6 @@
         font-size: em(12);
         font-style: italic;
     }
-
-    .node__content {
-        font-size: em(16);
-    }
 }
 
 .layout-sidebar-first {
@@ -29,9 +25,13 @@
     @extend [class^="col-"];
 }
 
-.block ul.tabs,
-.ui-dialog {
-    font-size: em(14);
+.ui-widget {
+    input,
+    select,
+    textarea,
+    button {
+        font-size: em(14);
+    }
 }
 
 .block ul.tabs {
