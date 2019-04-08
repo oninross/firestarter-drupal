@@ -20,8 +20,8 @@ export default function (gulp, plugins, args, config, taskTarget, browserSync) {
      *  Copy Fonts
      */
     gulp.task('copyFonts', () => {
-        return gulp.src(path.join(dirs.source, dirs.fonts, '**/*.*'))
-            .pipe(gulp.dest(dest))
+        return gulp.src(path.join(dirs.source, dirs.fonts, 'fonts/**/*.*'))
+            .pipe(gulp.dest(path.join(dest, config.directories.assets, dirs.fonts.replace(/^_/, ''))))
     });
 
 
