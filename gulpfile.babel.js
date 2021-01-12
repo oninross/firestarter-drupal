@@ -23,6 +23,7 @@ gulp.task(
     gulp.parallel(
       // 'copy',
       "copyFonts",
+      "copyTheme",
       "imagemin",
       "pug",
       "sass",
@@ -39,6 +40,7 @@ gulp.task(
     gulp.parallel(
       // 'copy',
       "copyFonts",
+      "copyTheme",
       "imagemin",
       "pug",
       "sass",
