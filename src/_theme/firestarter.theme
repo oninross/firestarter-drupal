@@ -1,7 +1,0 @@
-<?php
-
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Render\Element;
-use Drupal\image\Entity\ImageStyle;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Render\Markup;
