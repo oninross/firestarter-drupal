@@ -103,6 +103,7 @@
       "images": "_images",
       "styles": "_styles",
       "scripts": "_scripts",
+      "theme": "_theme",
       "data": "_data"
     },
     "drupal": {

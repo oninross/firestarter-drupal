@@ -27,7 +27,15 @@ gulp.task(
       "imagemin",
       "pug",
       "sass",
-      "browserify"
+      "browserify",
+      "copyCssToBuild",
+      "copyImagesToBuild",
+      "copyFontsToBuild",
+      "copyJsToBuild",
+      "copyCssToServer",
+      "copyImagesToServer",
+      "copyFontsToServer",
+      "copyJsToServer"
     ),
     "rev"
   )
@@ -45,6 +53,14 @@ gulp.task(
       "pug",
       "sass",
       "browserify",
+      "copyCssToBuild",
+      "copyImagesToBuild",
+      "copyFontsToBuild",
+      "copyJsToBuild",
+      "copyCssToServer",
+      "copyImagesToServer",
+      "copyFontsToServer",
+      "copyJsToServer",
       "browserSync",
       "watch"
     )

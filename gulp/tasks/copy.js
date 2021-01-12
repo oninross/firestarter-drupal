@@ -30,6 +30,166 @@ gulp.task("copyFonts", () => {
     );
 });
 
+/**
+ * Copy assets to local build
+ */
+gulp.task("copyCssToBuild", () => {
+  if (config.drupal.copyToBuild) {
+    console.log(
+      dest,
+      config.directories.assets,
+      dirs.styles.replace(/^_/, ""),
+      "**/*"
+    );
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.styles.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(gulp.dest(config.drupal.path.local.css));
+  }
+});
+
+gulp.task("copyJsToBuild", () => {
+  if (config.drupal.copyToBuild) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.scripts.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(gulp.dest(config.drupal.path.local.js));
+  }
+});
+
+gulp.task("copyFontsToBuild", () => {
+  if (config.drupal.copyToBuild) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.fonts.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(gulp.dest(config.drupal.path.local.fonts));
+  }
+});
+
+gulp.task("copyImagesToBuild", () => {
+  if (config.drupal.copyToBuild) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.images.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(gulp.dest(config.drupal.path.local.images));
+  }
+});
+
+/**
+ * Copy assets to server
+ */
+gulp.task("copyCssToServer", () => {
+  if (config.drupal.copyToServer) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.styles.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(
+        sftp({
+          host: credentials.host,
+          user: credentials.user,
+          pass: credentials.pass,
+          remotePath: config.drupal.path.remote.css
+        })
+      );
+  }
+});
+
+gulp.task("copyJsToServer", () => {
+  if (config.drupal.copyToServer) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.scripts.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(
+        sftp({
+          host: credentials.host,
+          user: credentials.user,
+          pass: credentials.pass,
+          remotePath: config.drupal.path.remote.js
+        })
+      );
+  }
+});
+
+gulp.task("copyFontsToServer", () => {
+  if (config.drupal.copyToServer) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.fonts.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(
+        sftp({
+          host: credentials.host,
+          user: credentials.user,
+          pass: credentials.pass,
+          remotePath: config.drupal.path.remote.fonts
+        })
+      );
+  }
+});
+
+gulp.task("copyImagesToServer", () => {
+  if (config.drupal.copyToServer) {
+    return gulp
+      .src(
+        path.join(
+          dest,
+          config.directories.assets,
+          dirs.images.replace(/^_/, ""),
+          "**/*"
+        )
+      )
+      .pipe(
+        sftp({
+          host: credentials.host,
+          user: credentials.user,
+          pass: credentials.pass,
+          remotePath: config.drupal.path.remote.images
+        })
+      );
+  }
+});
+
 // // Copy
 // gulp.task('copy', () => {
 //   return gulp.src([
