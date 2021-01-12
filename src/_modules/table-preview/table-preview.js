@@ -1,65 +1,83 @@
-'use strict';
+"use strict";
 
-import { debounce } from '../../_js/common/_util';
+import { debounce } from "../../_scripts/common/_util";
 
 export default class TablePreview {
-    constructor() {
-        const that = this;
-        const $window = $(window);
+  constructor() {
+    const that = this;
+    const $window = $(window);
 
-        $('table').each(function (i, v) {
+    $("table").each(function(i, v) {
+      let $this = $(v);
+
+      if (!$this.hasClass("no-wrap")) {
+        $this.wrap(
+          '<div class="table-wrap"><div class="table-responsive"></div></div>'
+        );
+      }
+    });
+
+    $(".table-wrap").each(function() {
+      let $this = $(this);
+      const $tableResponsive = $this.find(".table-responsive");
+      const $table = $this.find("table");
+      const trTotalWidth = that.getTrWidth($this, $table);
+
+      that.isLeftOrRight($this, $tableResponsive, trTotalWidth);
+
+      $tableResponsive.on("scroll", function() {
+        that.isLeftOrRight($this, $tableResponsive, trTotalWidth);
+      });
+    });
+
+    $window
+      .on(
+        "resize",
+        debounce(function() {
+          $("table").each(function(i, v) {
             let $this = $(v);
+            const $tableWrap = $this.closest(".table-wrap");
 
-            if (!$this.hasClass('no-wrap')) {
-                $this.wrap('<div class="table-wrap"><div class="table-responsive"></div></div>');
+            if (that.isTableWide(v)) {
+              $tableWrap.removeClass("-clean");
+            } else {
+              $tableWrap.addClass("-clean");
             }
-        });
+          });
+        }, 250)
+      )
+      .trigger("resize");
+  }
 
-        $('.table-wrap').each(function () {
-            let $this = $(this);
-            const $tableResponsive = $this.find('.table-responsive');
-            const $table = $this.find('table');
-            const trTotalWidth = that.getTrWidth($this, $table);
+  isTableWide(el) {
+    return (
+      $(el)
+        .parent()
+        .width() < $(el).width()
+    );
+  }
 
-            that.isLeftOrRight($this, $tableResponsive, trTotalWidth);
+  getTrWidth(el, table) {
+    let width;
+    let totalWidth = 0;
+    let tableWrapWidth = el.width();
 
-            $tableResponsive.on('scroll', function () {
-                that.isLeftOrRight($this, $tableResponsive, trTotalWidth);
-            })
-        });
+    return (
+      table.find("tr:first-child > *").each(function() {
+        totalWidth += $(this).outerWidth();
+      }),
+      (width = totalWidth - tableWrapWidth)
+    );
+  }
 
-        $window.on('resize', debounce(function () {
-            $('table').each(function (i, v) {
-                let $this = $(v);
-                const $tableWrap = $this.closest('.table-wrap');
+  isLeftOrRight(el, tableResponsive, trTotalWidth) {
+    let tableResponsiveScrollLeft = tableResponsive.scrollLeft();
 
-                if (that.isTableWide(v)) {
-                    $tableWrap.removeClass('-clean');
-                } else {
-                    $tableWrap.addClass('-clean');
-                }
-            });
-        }, 250)).trigger('resize');
-    }
-
-    isTableWide(el) {
-        return $(el).parent().width() < $(el).width();
-    }
-
-    getTrWidth(el, table) {
-        let width;
-        let totalWidth = 0;
-        let tableWrapWidth = el.width();
-
-        return table.find('tr:first-child > *').each(function () {
-            totalWidth += $(this).outerWidth()
-        }), width = totalWidth - tableWrapWidth;
-    }
-
-    isLeftOrRight(el, tableResponsive, trTotalWidth) {
-        let tableResponsiveScrollLeft = tableResponsive.scrollLeft();
-
-        tableResponsiveScrollLeft > 0 ? el.addClass('left') : el.removeClass('left'),
-            tableResponsiveScrollLeft < trTotalWidth ? el.addClass('right') : el.removeClass('right');
-    }
+    tableResponsiveScrollLeft > 0
+      ? el.addClass("left")
+      : el.removeClass("left"),
+      tableResponsiveScrollLeft < trTotalWidth
+        ? el.addClass("right")
+        : el.removeClass("right");
+  }
 }
